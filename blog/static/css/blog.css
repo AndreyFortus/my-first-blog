@@ -1,15 +1,24 @@
-h1 a {
-    color: #25747a;
-    font-family: 'Lobster';
-}
-body {
-    padding-left: 15px;
-}
 .page-header {
-    background-color: #ff9400;
+    background: linear-gradient(
+    135deg,
+    #5433ff, #20bdff, #a5fecb);
+
+    background-size: 400%;
+    animation: anim 5s infinite alternate;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
+
+/* anim - name of my custom animation
+   keyframes - diapason of animation */
+@keyframes anim {
+  from {
+      background-position: 0%;
+  }
+  to {
+      background-position: 100%;
+  }
+    }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #ffffff;
@@ -21,8 +30,11 @@ body {
     margin-left: 40px;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4 {  /* h2, h3, h4 - change nothing at the moment */
     font-family: 'Lobster', cursive;
+    /*
+    background: #0fd850;
+    */
 }
 
 .date {
@@ -38,11 +50,9 @@ h1, h2, h3, h4 {
     width: 100%;
 }
 
+/* add button */
 .top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
     float: right;
-    font-size: 26pt;
-    margin-right: 20px;
 }
 
 .post {
@@ -50,5 +60,61 @@ h1, h2, h3, h4 {
 }
 
 .post h1 a, .post h1 a:visited {
-    color: #000000;
+    color: #748700;
+}
+
+.top-menu {
+ outline: none;
+ cursor: pointer;
+ border: none;
+ padding: 0.9rem 2rem;
+ margin: 0;
+ font-family: inherit;
+ font-size: inherit;
+ position: relative;
+ display: inline-block;
+ letter-spacing: 0.05rem;
+ font-weight: 700;
+ font-size: 17px;
+ border-radius: 500px;
+ overflow: hidden;
+ background: #51EAFF;
+ color: ghostwhite;
+}
+
+.top-menu span {
+ position: relative;
+ z-index: 10;
+ transition: color 0.4s;
+}
+
+.top-menu: hover span {
+ color: black;
+}
+
+.top-menu::before,
+.top-menu::after {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ z-index: 0;
+}
+
+.top-menu::before {
+ content: "";
+ background: #000;
+ width: 120%;
+ left: -10%;
+ transform: skew(30deg);
+ transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.top-menu:hover::before {
+ transform: translate3d(100%, 0, 0);
+}
+
+* {
+  box-sizing: border-box;
 }

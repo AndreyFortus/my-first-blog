@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
 from django.shortcuts import render, get_object_or_404
@@ -43,3 +42,16 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        posts = Post.objects.filter(title__contains=searched)
+        return render(request, 'blog/post_search.html', {'searched': searched, 'posts': posts})
+    return render(request, 'blog/post_search.html', {})
+
+
+def custom_404(request, exception):
+    print('--404--')
+    return render(request, 'templates/blog/404.html', status=404)
